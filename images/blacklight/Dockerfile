@@ -26,6 +26,10 @@ RUN gem install rails
 WORKDIR /opt
 RUN rails new search_app -m https://raw.github.com/projectblacklight/blacklight/master/template.demo.rb
 
+# Add default env variable referencing our solr container
+# Depends on --link my_solr_container:solr
+ENV SOLR_URL http://solr:8983/solr/blacklight
+
 WORKDIR /opt/search_app
 # RUN rake jetty:start
 #RUN rake solr:marc:index_test_datas
